@@ -1,0 +1,44 @@
+
+
+實作參考: Feature extraction for CERT insider threat test dataset 
+(https://github.com/lcd-dal/feature-extraction-for-CERT-insider-threat-test-datasets)
+
+Dataset: CERT_r4.2
+        (https://kilthub.cmu.edu/articles/dataset/Insider_Threat_Test_Dataset/12841247/1)
+
+	CERT資料集:為一組合成的內部威脅測試數據集
+	這些數據集提供合成背景數據和來自合成惡意行為者的數據
+	使用者資訊、信箱、登入紀錄、設備等資訊
+	無label
+
+
+
+
+
+
+1.	論文程式實作需在linux環境執行
+	在資料集執行feature_extraction.py進行預處理
+	執行過程中發生問題，執行到一半程式會卡住
+	無法生成可輸入模型的資料
+  
+
+
+2.	Anomaly_detection.py進行模型訓練
+	輸入資料為預處理的pickle檔
+	因前面步驟資料預處理無法正常執行，後續無法實作
+ 
+
+
+---------------------------------------------------------------------------------------
+後來我找到其他CERT_r4.2的實作大家可以參考一下
+Insider-Threat-Detection (https://github.com/Akulm26/ITD_Core)
+
+附件為實際執行的結果
+可以看到CERT資料集都是使用者資訊、登入登出紀錄、員工資訊等
+然後將一堆資料轉換成自定義特徵(登入頻率,最大值,最小值…)後再輸入Isolation Forest做非監督式的異常檢測
+ 
+
+
+總結: CERT資料集主要模擬員工使用設備的狀況和員工的資料，而去找可能潛在內部攻擊的風險，
+因此裡面有很多瑣碎的資訊，但因沒有label也無法做準確度的評估，並且資料的內容也離我們實際場景有落差，
+所以可以再評估我們內部有沒有其他資料可以使用。
